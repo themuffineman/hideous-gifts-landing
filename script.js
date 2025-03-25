@@ -3,7 +3,6 @@ function loadParticles() {
     console.log("callback - particles.js config loaded");
   });
 }
-
 function createSkyBackground() {
   const skyContainer = document.querySelector("#sky-model");
   const scene = new THREE.Scene();
@@ -224,10 +223,11 @@ function animateGiftModel() {
         renderer.render(scene, camera);
       }
       giftModel.scale.set(0, 0, 0);
+      const scaleFactor = window.innerWidth > 768 ? 1.2 : 0.8; // Larger scale for wider screens
       gsap.to(giftModel.scale, {
-        x: 1.3,
-        y: 1.2,
-        z: 1.2,
+        x: scaleFactor,
+        y: scaleFactor,
+        z: scaleFactor,
         duration: 1,
         ease: "power2.out",
         onUpdate: () => {
@@ -262,6 +262,8 @@ function animateGiftModel() {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
+
+    // Scale down the model on resize
   }
 
   window.addEventListener("resize", onResize);
@@ -275,28 +277,28 @@ function scaleButton() {
   });
 }
 function moveHeroImages() {
+  const scaleFactor = window.innerWidth < 500 ? 0.8 : 1.2; // Scale down for small screens
   gsap.to(".hero-img-1", {
-    scale: 1.2,
+    scale: scaleFactor,
     duration: 1,
     ease: "elastic.out(0.5,0.3)",
-
     rotate: 20,
   });
   gsap.to(".hero-img-4", {
-    scale: 1,
+    scale: scaleFactor,
     duration: 2,
     ease: "elastic.out(0.5,0.3)",
 
     rotate: -20,
   });
   gsap.to(".hero-img-2", {
-    scale: 1.2,
+    scale: scaleFactor,
     duration: 2,
     rotate: 20,
     ease: "elastic.out(0.5,0.3)",
   });
   gsap.to(".hero-img-3", {
-    scale: 1,
+    scale: scaleFactor,
     duration: 2.5,
     rotate: -20,
     ease: "elastic.out(0.5,0.3)",
