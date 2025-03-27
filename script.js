@@ -288,7 +288,6 @@ function moveHeroImages() {
     scale: scaleFactor,
     duration: 2,
     ease: "elastic.out(0.5,0.3)",
-
     rotate: -20,
   });
   gsap.to(".hero-img-2", {
@@ -354,18 +353,9 @@ function kidsSection() {
       scrub: true,
       pinSpacer: true,
     },
-    clipPath: "inset(0% 0% 100% 0%)", // Ensure the animation completes fully
+    clipPath: "inset(0% 0% 100% 0%)",
     ease: "none",
   });
-  gsap.fromTo(
-    ".gallery-img",
-    {
-      scale: 0,
-    },
-    {
-      scale: 1,
-    }
-  );
 }
 
 document.addEventListener("DOMContentLoaded", () => {
