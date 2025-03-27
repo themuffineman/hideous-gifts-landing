@@ -343,6 +343,30 @@ function heroImageScrollTrigger() {
     x: "300px",
   });
 }
+function kidsSection() {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to(".gallery-img-top", {
+    scrollTrigger: {
+      trigger: ".gallery",
+      start: "top top",
+      end: "bottom bottom",
+      pin: true,
+      scrub: true,
+      pinSpacer: true,
+    },
+    clipPath: "inset(0% 0% 100% 0%)", // Ensure the animation completes fully
+    ease: "none",
+  });
+  gsap.fromTo(
+    ".gallery-img",
+    {
+      scale: 0,
+    },
+    {
+      scale: 1,
+    }
+  );
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
@@ -353,5 +377,6 @@ document.addEventListener("DOMContentLoaded", () => {
     scaleButton();
     moveHeroImages();
     heroImageScrollTrigger();
+    kidsSection();
   }, 500);
 });
