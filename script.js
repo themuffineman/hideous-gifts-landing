@@ -344,20 +344,33 @@ function heroImageScrollTrigger() {
 }
 function kidsSection() {
   gsap.registerPlugin(ScrollTrigger);
-  gsap.to(".gallery-img-top", {
+  gsap.to(".kids-top-image", {
     scrollTrigger: {
-      trigger: ".gallery",
-      start: "top top",
+      trigger: ".kids-gallery",
+      start: "top center",
       end: "bottom bottom",
       pin: true,
       scrub: true,
-      pinSpacer: true,
     },
     clipPath: "inset(0% 0% 100% 0%)",
     ease: "none",
   });
 }
-
+function adultsSection() {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to(".adults-top-image", {
+    scrollTrigger: {
+      trigger: ".adults-gallery",
+      start: "top center",
+      end: "bottom bottom",
+      pin: true,
+      scrub: true,
+    },
+    clipPath: "inset(0% 0% 100% 0%)",
+    ease: "none",
+  });
+}
+//remember to add the function dude!
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     loadParticles();
@@ -368,5 +381,6 @@ document.addEventListener("DOMContentLoaded", () => {
     moveHeroImages();
     heroImageScrollTrigger();
     kidsSection();
+    adultsSection();
   }, 500);
 });
