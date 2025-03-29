@@ -370,6 +370,48 @@ function adultsSection() {
     ease: "none",
   });
 }
+function adultsSection2() {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to(".adults-top-image-2", {
+    scrollTrigger: {
+      trigger: ".adults-gallery-2",
+      start: "top center",
+      end: "bottom bottom",
+      pin: true,
+      scrub: true,
+    },
+    clipPath: "inset(0% 0% 100% 0%)",
+    ease: "none",
+  });
+}
+function adultsSection3() {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to(".adults-top-image-3", {
+    scrollTrigger: {
+      trigger: ".adults-gallery-3",
+      start: "top center",
+      end: "bottom bottom",
+      pin: true,
+      scrub: true,
+    },
+    clipPath: "inset(0% 0% 100% 0%)",
+    ease: "none",
+  });
+}
+function adultsSection4() {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to(".adults-top-image-4", {
+    scrollTrigger: {
+      trigger: ".adults-gallery-4",
+      start: "top center",
+      end: "bottom bottom",
+      pin: true,
+      scrub: true,
+    },
+    clipPath: "inset(0% 0% 100% 0%)",
+    ease: "none",
+  });
+}
 //remember to add the function dude!
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
@@ -382,5 +424,8 @@ document.addEventListener("DOMContentLoaded", () => {
     heroImageScrollTrigger();
     kidsSection();
     adultsSection();
+    adultsSection2();
+    adultsSection3();
+    adultsSection4();
   }, 500);
 });
