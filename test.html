@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flip Cards on Scroll</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 400vh;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        /* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+        .flip-box {
+            background-color: transparent;
+            width: 300px;
+            /* 	border: 1px solid black; */
+            perspective: 1000px; /* Remove this if you don't want the 3D effect */
+            cursor: pointer;
+            height: 300px;
+        }
+        section{
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* This container is needed to position the front and back side */
+        .flip-box-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding-top: 52.65%;
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+
+        /* Do an horizontal flip when you move the mouse over the flip box container */
+        
+
+        /* Position the front and back side */
+        .flip-box-front,
+        .flip-box-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Style the front side (fallback if image is missing) */
+        .flip-box-front {
+            color: black;
+        }
+
+        /* Style the back side */
+        .flip-box-back {
+            background-color: #ff6f00;
+            color: white;
+            transform: rotateY(180deg);
+            display: grid;
+            align-content: center;
+        }
+
+        @media screen and (max-width: 600px) {
+            .flip-box-inner {
+                padding-top: 100%;
+            }
+            .flip-box {
+                width: 90vw;
+            }
+        }
+    </style>
+    <section>
+
+    </section>
+    <div class="flip-box">
+        <div class="flip-box-inner">
+            <div class="flip-box-front">
+                <img src="https://www1.wdr.de/radio/wdr2/veranstaltungen/veranstaltungstermine/taylor-swift-244~_v-gseagaleriexl.jpg" alt="Paris">
+            </div>
+            <div class="flip-box-back">
+                <h1>Taylor Swift</h1>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger)
+        gsap.to(".flip-box-inner",{
+            scrollTrigger:{
+                trigger:".flip-box-inner",
+                start:"top bottom",
+                end:"bottom top",
+                scrub:true,
+                ease:"none"
+            },
+            rotateY:180
+        })
+    </script>
+</body>
+</html>

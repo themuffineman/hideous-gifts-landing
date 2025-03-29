@@ -412,6 +412,34 @@ function adultsSection4() {
     ease: "none",
   });
 }
+function cardFlipSection() {
+  gsap.registerPlugin(ScrollTrigger);
+  const cards = document.querySelectorAll(".flip-box-inner");
+  cards.forEach((card, i) => {
+    gsap.to(card, {
+      scrollTrigger: {
+        trigger: ".flip-box-inner",
+        start: "top 20%",
+        end: "bottom top",
+        scrub: true,
+        ease: "none",
+      },
+      rotateY: 180,
+      stagger: 2,
+    });
+  });
+}
+function pinFlipCards() {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to(".flip-box-container", {
+    scrollTrigger: {
+      trigger: ".flip-box-container",
+      start: "top 20%",
+      end: "+=1000px",
+      pin: true,
+    },
+  });
+}
 //remember to add the function dude!
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
@@ -427,5 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
     adultsSection2();
     adultsSection3();
     adultsSection4();
+    cardFlipSection();
+    pinFlipCards();
   }, 500);
 });
