@@ -429,6 +429,21 @@ function cardFlipSection() {
     });
   });
 }
+function flipCardsMobile() {
+  gsap.registerPlugin(ScrollTrigger);
+  const cards = document.querySelectorAll(".flip-box-inner");
+  cards.forEach((card, i) => {
+    gsap.to(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top bottom",
+        end: `bottom center`,
+        scrub: true,
+      },
+      rotateY: 180,
+    });
+  });
+}
 function pinFlipCards() {
   gsap.registerPlugin(ScrollTrigger);
   gsap.to(".flip-box-container", {
@@ -439,6 +454,14 @@ function pinFlipCards() {
       pin: true,
     },
   });
+}
+function cardsAnimation() {
+  if (window.innerWidth > 768) {
+    cardFlipSection();
+    pinFlipCards();
+  } else {
+    flipCardsMobile();
+  }
 }
 //remember to add the function dude!
 document.addEventListener("DOMContentLoaded", () => {
@@ -455,7 +478,6 @@ document.addEventListener("DOMContentLoaded", () => {
     adultsSection2();
     adultsSection3();
     adultsSection4();
-    cardFlipSection();
-    pinFlipCards();
+    cardsAnimation();
   }, 500);
 });

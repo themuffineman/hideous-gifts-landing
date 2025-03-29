@@ -379,19 +379,19 @@ h1 {
   }
   .adults-gallery-left .bottom,
   .adults-gallery-right .bottom {
-    width: 150px;
+    width: 180px;
   }
   .adults-gallery-left .top,
   .adults-gallery-right .top {
-    width: 150px;
+    width: 180px;
   }
   .kids-gallery-left .bottom,
   .kids-gallery-right .bottom {
-    width: 150px;
+    width: 180px;
   }
   .kids-gallery-left .top,
   .kids-gallery-right .top {
-    width: 150px;
+    width: 180px;
   }
 }
 
@@ -678,7 +678,7 @@ h1 {
     gap: 50px;
     align-items: center;
     padding: 50px;
-    height: 400vh;
+    height: 200vh;
     margin-top: 0px;
   }
   .howitworks div {
@@ -731,9 +731,31 @@ h1 {
   justify-content: center;
 }
 @media (max-width: 768px) {
+  .step-section {
+    height: 300vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    justify-content: start;
+    z-index: 10;
+    margin-top: 50px;
+  }
   .flip-box-container {
     flex-direction: column;
     align-items: center;
+    width: 100%;
+  }
+  .flip-box-container div {
+    rotate: 0deg !important;
+    width: 70vw;
+    max-width: 400px;
+    aspect-ratio: 2/3;
+    height: auto;
+  }
+  .flip-box-inner {
+    border: none;
   }
 }
 .flip-box {
