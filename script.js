@@ -263,7 +263,7 @@ function animateGiftModel() {
     // Scale down the model on resize
   }
 
-  window.addEventListener("resize", onResize);
+  // window.addEventListener("resize", onResize);
 }
 function scaleButton() {
   gsap.to(".hero-button", {
