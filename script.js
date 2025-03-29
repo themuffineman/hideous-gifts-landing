@@ -149,7 +149,6 @@ function createSkyBackground() {
     skyContainer.remove();
   };
 }
-
 function animateHeroText() {
   gsap.registerPlugin(ScrollTrigger);
   const lenis = new Lenis();
@@ -236,15 +235,13 @@ function animateGiftModel() {
       });
 
       // Add scroll-triggered rotation
-      gsap.registerPlugin(ScrollTrigger);
-      gsap.to(giftModel.rotation, {
-        y: "+=6.28", // Rotate 360 degrees (in radians)
-        scrollTrigger: {
-          trigger: giftContainer,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
+      window.addEventListener("scroll", () => {
+        // Get scroll progress (0 to 1)
+        const scrollProgress =
+          window.scrollY / (document.body.scrollHeight - window.innerHeight);
+
+        // Rotate the model based on scroll progress
+        giftModel.rotation.y = scrollProgress * Math.PI * 4; // 4 full rotations (adjust as needed)
       });
 
       animate();
