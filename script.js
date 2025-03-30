@@ -173,6 +173,7 @@ function animateGiftModel() {
   const loader = new THREE.GLTFLoader();
   const giftContainer = document.querySelector("div#gift-model");
   const scene = new THREE.Scene();
+  const confettiSound = new Audio("./assets/confetti.mp3");
 
   // Camera setup
   const camera = new THREE.PerspectiveCamera(
@@ -232,6 +233,40 @@ function animateGiftModel() {
         onUpdate: () => {
           giftModel.rotation.y += 0.2; // the spinning effect during scaling
         },
+      });
+      gsap.registerPlugin(ScrollTrigger);
+
+      ScrollTrigger.create({
+        trigger: ".model-exit",
+        start: "top center",
+        onEnter: () => {
+          gsap.to(giftModel.scale, {
+            x: 0,
+            y: 0,
+            z: 0,
+            duration: 0.5,
+            ease: "power2.in",
+            onComplete: () => {
+              confetti({
+                particleCount: 800,
+                spread: 150,
+                origin: { y: 1 },
+              });
+              confettiSound.play();
+            },
+          });
+        },
+        onLeaveBack: () => {
+          const scaleFactor = window.innerWidth > 768 ? 1.2 : 0.8;
+          gsap.to(giftModel.scale, {
+            x: scaleFactor,
+            y: scaleFactor,
+            z: scaleFactor,
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        },
+        once: false,
       });
 
       // Add scroll-triggered rotation
@@ -460,6 +495,95 @@ function cardsAnimation() {
     flipCardsMobile();
   }
 }
+function embla() {
+  const OPTIONS = { loop: false };
+
+  const emblaNode = document.querySelector(".embla");
+  const viewportNode = emblaNode.querySelector(".embla__viewport");
+  const prevBtn = emblaNode.querySelector(".embla__button--prev");
+  const nextBtn = emblaNode.querySelector(".embla__button--next");
+
+  const emblaApi = EmblaCarousel(viewportNode, OPTIONS);
+  const removefunc = emblaBtns();
+  const removePrevNextBtnsClickHandlers = removefunc(
+    emblaApi,
+    prevBtn,
+    nextBtn
+  );
+  emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
+}
+function emblaBtns() {
+  const addTogglePrevNextBtnsActive = (emblaApi, prevBtn, nextBtn) => {
+    const togglePrevNextBtnsState = () => {
+      if (emblaApi.canScrollPrev()) prevBtn.removeAttribute("disabled");
+      else prevBtn.setAttribute("disabled", "disabled");
+
+      if (emblaApi.canScrollNext()) nextBtn.removeAttribute("disabled");
+      else nextBtn.setAttribute("disabled", "disabled");
+    };
+
+    emblaApi
+      .on("select", togglePrevNextBtnsState)
+      .on("init", togglePrevNextBtnsState)
+      .on("reInit", togglePrevNextBtnsState);
+
+    return () => {
+      prevBtn.removeAttribute("disabled");
+      nextBtn.removeAttribute("disabled");
+    };
+  };
+
+  return (addPrevNextBtnsClickHandlers = (emblaApi, prevBtn, nextBtn) => {
+    const scrollPrev = () => {
+      emblaApi.scrollPrev();
+    };
+    const scrollNext = () => {
+      emblaApi.scrollNext();
+    };
+    prevBtn.addEventListener("click", scrollPrev, false);
+    nextBtn.addEventListener("click", scrollNext, false);
+
+    const removeTogglePrevNextBtnsActive = addTogglePrevNextBtnsActive(
+      emblaApi,
+      prevBtn,
+      nextBtn
+    );
+
+    return () => {
+      removeTogglePrevNextBtnsActive();
+      prevBtn.removeEventListener("click", scrollPrev, false);
+      nextBtn.removeEventListener("click", scrollNext, false);
+    };
+  });
+}
+function modelExit() {
+  gsap.to(model.rotation, {
+    y: model.rotation.y + Math.PI * 2,
+    duration: 1,
+    ease: "power2.inOut",
+    onComplete: () => {
+      gsap.to(model.scale, {
+        x: 0,
+        y: 0,
+        z: 0,
+        duration: 0.5,
+        ease: "power2.in",
+        onComplete: () => {
+          gsap.to(scanContainer, {
+            scale: 0,
+            duration: 0.5,
+            ease: "power2.in",
+          });
+        },
+      });
+      confetti({
+        particleCount: 800,
+        spread: 150,
+        origin: { y: 1 },
+      });
+    },
+  });
+}
 //remember to add the function dude!
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
@@ -470,11 +594,12 @@ document.addEventListener("DOMContentLoaded", () => {
     scaleButton();
     moveHeroImages();
     heroImageScrollTrigger();
-    kidsSection();
-    adultsSection();
-    adultsSection2();
-    adultsSection3();
-    adultsSection4();
-    cardsAnimation();
+    embla();
+    // kidsSection();
+    // adultsSection();
+    // adultsSection2();
+    // adultsSection3();
+    // adultsSection4();
+    // cardsAnimation();
   }, 500);
 });
