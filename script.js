@@ -379,7 +379,7 @@ function kidsSection() {
   gsap.to(".kids-top-image", {
     scrollTrigger: {
       trigger: ".kids-gallery",
-      start: "top center",
+      start: "top 30%",
       end: "bottom bottom",
       pin: true,
       scrub: true,
@@ -390,10 +390,10 @@ function kidsSection() {
 }
 function adultsSection() {
   gsap.registerPlugin(ScrollTrigger);
-  gsap.to(".adults-top-image", {
+  gsap.to(".adults-top-image-1", {
     scrollTrigger: {
       trigger: ".adults-gallery",
-      start: "top center",
+      start: "top 30%",
       end: "bottom bottom",
       pin: true,
       scrub: true,
@@ -407,7 +407,7 @@ function adultsSection2() {
   gsap.to(".adults-top-image-2", {
     scrollTrigger: {
       trigger: ".adults-gallery-2",
-      start: "top center",
+      start: "top 30%",
       end: "bottom bottom",
       pin: true,
       scrub: true,
@@ -421,7 +421,7 @@ function adultsSection3() {
   gsap.to(".adults-top-image-3", {
     scrollTrigger: {
       trigger: ".adults-gallery-3",
-      start: "top center",
+      start: "top 30%",
       end: "bottom bottom",
       pin: true,
       scrub: true,
@@ -496,6 +496,50 @@ function cardsAnimation() {
   }
 }
 function embla() {
+  function emblaBtns() {
+    const addTogglePrevNextBtnsActive = (emblaApi, prevBtn, nextBtn) => {
+      const togglePrevNextBtnsState = () => {
+        if (emblaApi.canScrollPrev()) prevBtn.removeAttribute("disabled");
+        else prevBtn.setAttribute("disabled", "disabled");
+
+        if (emblaApi.canScrollNext()) nextBtn.removeAttribute("disabled");
+        else nextBtn.setAttribute("disabled", "disabled");
+      };
+
+      emblaApi
+        .on("select", togglePrevNextBtnsState)
+        .on("init", togglePrevNextBtnsState)
+        .on("reInit", togglePrevNextBtnsState);
+
+      return () => {
+        prevBtn.removeAttribute("disabled");
+        nextBtn.removeAttribute("disabled");
+      };
+    };
+
+    return (addPrevNextBtnsClickHandlers = (emblaApi, prevBtn, nextBtn) => {
+      const scrollPrev = () => {
+        emblaApi.scrollPrev();
+      };
+      const scrollNext = () => {
+        emblaApi.scrollNext();
+      };
+      prevBtn.addEventListener("click", scrollPrev, false);
+      nextBtn.addEventListener("click", scrollNext, false);
+
+      const removeTogglePrevNextBtnsActive = addTogglePrevNextBtnsActive(
+        emblaApi,
+        prevBtn,
+        nextBtn
+      );
+
+      return () => {
+        removeTogglePrevNextBtnsActive();
+        prevBtn.removeEventListener("click", scrollPrev, false);
+        nextBtn.removeEventListener("click", scrollNext, false);
+      };
+    });
+  }
   const OPTIONS = { loop: false };
 
   const emblaNode = document.querySelector(".embla");
@@ -511,50 +555,6 @@ function embla() {
     nextBtn
   );
   emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
-}
-function emblaBtns() {
-  const addTogglePrevNextBtnsActive = (emblaApi, prevBtn, nextBtn) => {
-    const togglePrevNextBtnsState = () => {
-      if (emblaApi.canScrollPrev()) prevBtn.removeAttribute("disabled");
-      else prevBtn.setAttribute("disabled", "disabled");
-
-      if (emblaApi.canScrollNext()) nextBtn.removeAttribute("disabled");
-      else nextBtn.setAttribute("disabled", "disabled");
-    };
-
-    emblaApi
-      .on("select", togglePrevNextBtnsState)
-      .on("init", togglePrevNextBtnsState)
-      .on("reInit", togglePrevNextBtnsState);
-
-    return () => {
-      prevBtn.removeAttribute("disabled");
-      nextBtn.removeAttribute("disabled");
-    };
-  };
-
-  return (addPrevNextBtnsClickHandlers = (emblaApi, prevBtn, nextBtn) => {
-    const scrollPrev = () => {
-      emblaApi.scrollPrev();
-    };
-    const scrollNext = () => {
-      emblaApi.scrollNext();
-    };
-    prevBtn.addEventListener("click", scrollPrev, false);
-    nextBtn.addEventListener("click", scrollNext, false);
-
-    const removeTogglePrevNextBtnsActive = addTogglePrevNextBtnsActive(
-      emblaApi,
-      prevBtn,
-      nextBtn
-    );
-
-    return () => {
-      removeTogglePrevNextBtnsActive();
-      prevBtn.removeEventListener("click", scrollPrev, false);
-      nextBtn.removeEventListener("click", scrollNext, false);
-    };
-  });
 }
 function modelExit() {
   gsap.to(model.rotation, {
@@ -595,10 +595,10 @@ document.addEventListener("DOMContentLoaded", () => {
     moveHeroImages();
     heroImageScrollTrigger();
     embla();
-    // kidsSection();
-    // adultsSection();
-    // adultsSection2();
-    // adultsSection3();
+    kidsSection();
+    adultsSection();
+    adultsSection2();
+    adultsSection3();
     // adultsSection4();
     // cardsAnimation();
   }, 500);

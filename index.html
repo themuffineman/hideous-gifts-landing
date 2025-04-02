@@ -45,6 +45,7 @@
             </a>
           </span>
         </button>
+        <canvas id="scroll-canvas"></canvas>
       </div>
       <img
         class="hero-img-1 hero-images"
@@ -105,7 +106,7 @@
           <img
             src="./assets/adult2.jpg"
             alt="gallery image"
-            class="top adults-top-image"
+            class="top adults-top-image adults-top-image-1"
           />
           <img src="./assets/adult3.jpg" alt="gallery image" class="bottom" />
         </div>
@@ -113,17 +114,17 @@
           <img
             src="./assets/adult4.jpg"
             alt="gallery image"
-            class="top adults-top-image"
+            class="top adults-top-image adults-top-image-1"
           />
           <img src="./assets/adult5.jpg" alt="gallery image" class="bottom" />
         </div>
       </div>
-      <div class="adults-gallery">
+      <div class="adults-gallery adults-gallery-2">
         <div class="adults-gallery-left">
           <img
             src="./assets/adult1.jpg"
             alt="gallery image"
-            class="top adults-top-image"
+            class="top adults-top-image adults-top-image-2"
           />
           <img src="./assets/adult2.jpg" alt="gallery image" class="bottom" />
         </div>
@@ -131,17 +132,17 @@
           <img
             src="./assets/adult3.jpg"
             alt="gallery image"
-            class="top adults-top-image"
+            class="top adults-top-image adults-top-image-2"
           />
           <img src="./assets/adult4.jpg" alt="gallery image" class="bottom" />
         </div>
       </div>
-      <div class="adults-gallery">
+      <div class="adults-gallery adults-gallery-3">
         <div class="adults-gallery-left">
           <img
             src="./assets/adult5.jpg"
             alt="gallery image"
-            class="top adults-top-image"
+            class="top adults-top-image adults-top-image-3"
           />
           <img src="./assets/adult6.jpg" alt="gallery image" class="bottom" />
         </div>
@@ -149,12 +150,12 @@
           <img
             src="./assets/adult7.jpg"
             alt="gallery image"
-            class="top adults-top-image"
+            class="top adults-top-image adults-top-image-3"
           />
           <img src="./assets/adult8.jpg" alt="gallery image" class="bottom" />
         </div>
       </div>
-      <div class="adults-gallery">
+      <!-- <div class="adults-gallery">
         <div class="adults-gallery-left">
           <img
             src="./assets/adult9.jpg"
@@ -163,9 +164,8 @@
           />
           <img src="./assets/adult10.jpg" alt="gallery image" class="bottom" />
         </div>
-      </div>
+      </div> -->
     </section>
-
     <section class="howitworks">
       <div>
         <img src="./assets/howitworks1.jpg" alt="" />
@@ -191,7 +191,6 @@
         </p>
       </div>
     </section>
-
     <section class="embla">
       <h3 class="step-text">
         How to <span style="color: orange">create yours</span>
@@ -286,6 +285,18 @@
         </div>
       </div>
     </footer>
+    <script type="module">
+      import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+      const canvas = document.getElementById("scroll-canvas");
+      new DotLottie({
+        autoplay: true,
+        loop: true,
+        canvas,
+        src: "./assets/scroll-down.json", // replace with your .lottie or .json file URL
+      });
+      canvas.style.width = "80px";
+      canvas.style.height = "80px";
+    </script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
