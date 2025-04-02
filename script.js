@@ -133,7 +133,7 @@ function createSkyBackground() {
   }
 
   // Event listeners
-  window.addEventListener("resize", onResize);
+  // window.addEventListener("resize", onResize);
   window.addEventListener("mousemove", handleMouseMove);
 
   // Start animation
