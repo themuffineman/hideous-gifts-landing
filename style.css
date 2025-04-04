@@ -45,6 +45,8 @@ body {
   font-size: 50px;
   font-family: "Fontdiner Swanky", serif;
   color: white;
+  text-wrap: wrap;
+  text-align: center;
 }
 /* The Spinner */
 .spinner {
