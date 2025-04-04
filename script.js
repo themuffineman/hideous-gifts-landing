@@ -584,6 +584,60 @@ function modelExit() {
     },
   });
 }
+// Wait for the entire page content
+window.addEventListener("load", function () {
+  // Get the loading screen element
+  const loadingScreen = document.getElementById("loading-screen");
+
+  if (loadingScreen) {
+    // Add the 'hidden' class to start the fade-out transition
+    loadingScreen.classList.add("hidden");
+
+    // Optional: Completely remove the loading screen element
+    // from the DOM after the transition finishes.
+    // This is good practice to prevent any potential interference.
+    loadingScreen.addEventListener(
+      "transitionend",
+      function handleTransitionEnd(event) {
+        // Ensure the transition that ended is the opacity transition
+        if (event.propertyName === "opacity") {
+          // Check if the element still exists before trying to remove
+          if (loadingScreen.parentNode) {
+            loadingScreen.parentNode.removeChild(loadingScreen);
+          }
+          // Clean up the event listener
+          loadingScreen.removeEventListener(
+            "transitionend",
+            handleTransitionEnd
+          );
+        }
+      },
+      { once: false }
+    ); // Use { once: false } and check propertyName for robustness
+
+    // Fallback: If transitionend doesn't fire (e.g., due to display:none interfering),
+    // remove after a slightly longer delay than the transition.
+    setTimeout(() => {
+      if (loadingScreen.parentNode) {
+        loadingScreen.parentNode.removeChild(loadingScreen);
+      }
+    }, 600); // 500ms transition + 100ms buffer
+  } else {
+    console.warn("Loading screen element not found!");
+  }
+});
+
+const maxLoadTime = 10000; // 10 seconds
+const timeoutId = setTimeout(() => {
+  console.warn("Page load timed out. Hiding loader.");
+  const loadingScreen = document.getElementById("loading-screen");
+  if (loadingScreen && !loadingScreen.classList.contains("hidden")) {
+    loadingScreen.classList.add("hidden");
+  }
+}, maxLoadTime);
+window.addEventListener("load", () => {
+  clearTimeout(timeoutId);
+});
 //remember to add the function dude!
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
