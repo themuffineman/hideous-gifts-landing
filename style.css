@@ -901,6 +901,7 @@ ul {
   align-items: center;
   justify-content: center;
   font-family: "Instrument Serif", "serif";
+  z-index: 10;
 }
 .model-exit p {
   font-size: 50px;
