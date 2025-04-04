@@ -839,3 +839,32 @@ ul {
 .embla__viewport {
   overflow: hidden;
 }
+.model-exit {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  font-family: "Instrument Serif", "serif";
+}
+.model-exit p {
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .model-exit p {
+    font-size: 40px;
+    font-weight: bold;
+  }
+}
+.cta-button {
+  background: hsl(214, 100%, 72%);
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  font-family: "Instrument Serif", serif;
+  scale: 0;
+}
