@@ -627,7 +627,7 @@ window.addEventListener("load", function () {
   }
 });
 
-const maxLoadTime = 10000; // 10 seconds
+const maxLoadTime = 20000; // 10 seconds
 const timeoutId = setTimeout(() => {
   console.warn("Page load timed out. Hiding loader.");
   const loadingScreen = document.getElementById("loading-screen");
