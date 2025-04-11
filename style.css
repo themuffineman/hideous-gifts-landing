@@ -22,8 +22,8 @@ body {
   position: fixed; /* Cover the entire screen */
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 120vw;
+  height: 120vh;
   gap: 20px;
   background-color: #000; /* White background - adjust as needed */
   display: flex; /* Use flexbox for centering */
@@ -548,7 +548,7 @@ h1 {
     flex-direction: column;
     gap: 50px;
     align-items: center;
-    padding: 50px;
+    padding-top: 50px;
     height: 200vh;
     margin-top: 0px;
   }
@@ -558,7 +558,7 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 50px;
+    padding: 30px;
     background: #d8fe7e;
     border-radius: 40px;
     gap: 40px;

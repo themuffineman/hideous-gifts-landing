@@ -33,6 +33,13 @@ function createSkyBackground() {
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
+  const skySizeScale = 1.5; // Adjust this value to scale the sky model
+  const width = window.innerWidth * skySizeScale;
+  const height = window.innerHeight * skySizeScale;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
   skyContainer.appendChild(renderer.domElement);
 
   // lighting setup
@@ -230,9 +237,9 @@ function animateGiftModel() {
         z: scaleFactor,
         duration: 1,
         ease: "power2.out",
-        onUpdate: () => {
-          giftModel.rotation.y += 0.2; // the spinning effect during scaling
-        },
+        // onUpdate: () => {
+        //   giftModel.rotation.y += 0.2; // the spinning effect during scaling
+        // },
       });
       gsap.registerPlugin(ScrollTrigger);
 
@@ -309,7 +316,7 @@ function scaleButton() {
   });
 }
 function moveHeroImages() {
-  const scaleFactor = window.innerWidth < 500 ? 0.8 : 1.2; // Scale down for small screens
+  const scaleFactor = window.innerWidth < 500 ? 0.0 : 1.1; // Scale down for small screens
   gsap.to(".hero-img-1", {
     scale: scaleFactor,
     duration: 1,
@@ -638,7 +645,6 @@ const timeoutId = setTimeout(() => {
 window.addEventListener("load", () => {
   clearTimeout(timeoutId);
 });
-//remember to add the function dude!
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     loadParticles();
