@@ -633,7 +633,6 @@ window.addEventListener("load", function () {
     console.warn("Loading screen element not found!");
   }
 });
-
 const maxLoadTime = 20000; // 10 seconds
 const timeoutId = setTimeout(() => {
   console.warn("Page load timed out. Hiding loader.");
