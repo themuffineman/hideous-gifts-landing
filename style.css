@@ -68,7 +68,7 @@ body {
   color: #333;
 }
 
-/* Spin Animation Keyframes */
+/* Spin Animation Keyframe */
 @keyframes spin {
   from {
     transform: rotate(0deg);
