@@ -4,7 +4,7 @@
   padding: 0;
 }
 html {
-  min-height: 100vh;
+  max-height: 100vh;
   width: 100vw;
 }
 body {
@@ -15,11 +15,9 @@ body {
   align-items: center;
   justify-content: space-between;
   max-height: 100vh;
-  height: 100vh;
   overflow-x: hidden;
   height: max-content;
   overflow-y: scroll;
-  scrollbar-gutter: stable;
 }
 #loading-screen {
   position: fixed; /* Cover the entire screen */
