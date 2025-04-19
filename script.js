@@ -646,7 +646,6 @@ window.addEventListener("load", () => {
 });
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
-    ScrollTrigger.normalizeScroll(true);
     loadParticles();
     createSkyBackground();
     animateGiftModel();
