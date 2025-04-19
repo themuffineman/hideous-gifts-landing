@@ -33,13 +33,6 @@ function createSkyBackground() {
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
-  const skySizeScale = 1.5; // Adjust this value to scale the sky model
-  const width = window.innerWidth * skySizeScale;
-  const height = window.innerHeight * skySizeScale;
-
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
-  renderer.setSize(width, height);
   skyContainer.appendChild(renderer.domElement);
 
   // lighting setup

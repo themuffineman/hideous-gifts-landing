@@ -4,23 +4,22 @@
   padding: 0;
 }
 html {
-  max-height: 100vh;
+  min-height: 100vh;
   width: 100vw;
 }
 body {
   width: 100vw;
+  height: 100%;
   display: flex;
-  top: 0;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  max-height: 100vh;
+  min-height: 100vh;
   overflow-x: hidden;
   height: max-content;
-  overflow-y: scroll;
 }
 #loading-screen {
-  position: fixed;
+  position: fixed; /* Cover the entire screen */
   top: 0;
   left: 0;
   width: 100vw;
@@ -46,8 +45,6 @@ body {
   font-size: 50px;
   font-family: "Fontdiner Swanky", serif;
   color: white;
-  text-wrap: wrap;
-  text-align: center;
 }
 /* The Spinner */
 .spinner {
@@ -67,7 +64,7 @@ body {
   color: #333;
 }
 
-/* Spin Animation Keyframe */
+/* Spin Animation Keyframes */
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -549,7 +546,7 @@ h1 {
     flex-direction: column;
     gap: 50px;
     align-items: center;
-    padding-top: 50px;
+    padding: 50px;
     height: 200vh;
     margin-top: 0px;
   }
@@ -559,7 +556,7 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 30px;
+    padding: 50px;
     background: #d8fe7e;
     border-radius: 40px;
     gap: 40px;
